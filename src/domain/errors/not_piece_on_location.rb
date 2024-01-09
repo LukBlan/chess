@@ -1,0 +1,2 @@
+class NotPieceOnLocation < StandardError
+end

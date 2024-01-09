@@ -1,7 +1,9 @@
 require_relative '../pieces/null_piece'
 require_relative '../pieces/pawn_piece'
 require_relative '../pieces/knight_king_piece'
-require_relative '../pieces/rook_bishop_queen_piece'
+require_relative '../pieces/bishop_queen_piece'
+require_relative '../pieces/rook_piece'
+require_relative 'board'
 
 class BoardFactory
   ROW_SIZE = 8
@@ -17,20 +19,20 @@ class BoardFactory
     fill_row_with_null_pieces(2..5)
     fill_row_with_pawns(6, player2)
     fill_with_first_row_pieces(7, player2)
-    @grid
+    Board.new(@grid)
   end
 
   def fill_with_first_row_pieces(row, player_owner)
     color = player_owner.color
 
-    @grid[row] << RookBishopQueenPiece.new(color)
+    @grid[row] << RookPiece.new(color)
     @grid[row] << KnightKingPiece.new(color)
-    @grid[row] << RookBishopQueenPiece.new(color)
+    @grid[row] << BishopQueenPiece.new(color)
     @grid[row] << KnightKingPiece.new(color)
-    @grid[row] << RookBishopQueenPiece.new(color)
-    @grid[row] << RookBishopQueenPiece.new(color)
+    @grid[row] << BishopQueenPiece.new(color)
+    @grid[row] << BishopQueenPiece.new(color)
     @grid[row] << KnightKingPiece.new(color)
-    @grid[row] << RookBishopQueenPiece.new(color)
+    @grid[row] << BishopQueenPiece.new(color)
   end
 
   def fill_row_with_null_pieces(range)

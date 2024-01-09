@@ -1,4 +1,4 @@
-class KnightKingPiece < Piece
+class BishopQueenPiece < Piece
   def initialize(color)
     super(color)
   end
