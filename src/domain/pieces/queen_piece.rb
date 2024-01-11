@@ -1,6 +1,6 @@
 require_relative '../move-modules/slideable'
 
-class RookPiece < Piece
+class QueenPiece < Piece
   include Slideable
 
   def initialize(color)
@@ -11,6 +11,6 @@ class RookPiece < Piece
   end
 
   def move_offset
-    [[0,1], [0,-1], [1,0], [-1,0]]
+    [[0,-1], [-1,1], [1,0], [1,1], [0,1], [-1,1], [-1,0], [-1,-1]]
   end
 end
