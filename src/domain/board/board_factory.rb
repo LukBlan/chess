@@ -17,11 +17,11 @@ class BoardFactory
   end
 
   def create_chess_board(player1, player2)
-    fill_with_first_row_pieces(0, player1)
-    fill_row_with_pawns(1, player1)
+    fill_with_first_row_pieces(7, player1)
+    fill_row_with_pawns(6, player1)
     fill_row_with_null_pieces(2..5)
-    fill_row_with_pawns(6, player2)
-    fill_with_first_row_pieces(7, player2)
+    fill_row_with_pawns(1, player2)
+    fill_with_first_row_pieces(0, player2)
     Board.new(@grid, @null_piece.color)
   end
 
