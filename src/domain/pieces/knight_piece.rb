@@ -13,4 +13,8 @@ class KnightPiece < Piece
   def move_offset
     [[-2,-1], [-2,1], [2,-1], [2, 1], [-1,-2], [1, -2], [-1,2], [1,2]]
   end
+
+  def symbol
+    :H
+  end
 end

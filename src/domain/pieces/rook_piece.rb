@@ -13,4 +13,8 @@ class RookPiece < Piece
   def move_offset
     [[0,1], [0,-1], [1,0], [-1,0]]
   end
+
+  def symbol
+    :R
+  end
 end

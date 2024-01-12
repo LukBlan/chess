@@ -12,4 +12,8 @@ class NullPiece < Piece
   def valid_move?(start_position, end_position)
     raise NotPieceOnLocation.new("There is not piece in target location")
   end
+
+  def symbol
+    :_
+  end
 end

@@ -7,4 +7,8 @@ class PawnPiece < Piece
 
   def valid_move?(start_position, end_position)
   end
+
+  def symbol
+    :P
+  end
 end

@@ -10,4 +10,8 @@ class Bishop < Piece
   def move_offset
     [[-1,-1], [-1,1], [1,1], [1, -1]]
   end
+
+  def symbol
+    :B
+  end
 end

@@ -13,4 +13,8 @@ class QueenPiece < Piece
   def move_offset
     [[0,-1], [-1,1], [1,0], [1,1], [0,1], [-1,1], [-1,0], [-1,-1]]
   end
+
+  def symbol
+    :Q
+  end
 end
