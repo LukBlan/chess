@@ -13,6 +13,7 @@ class BoardFactory
 
   def initialize
     @grid = Array.new(ROW_SIZE) { [] }
+    @null_piece = NullPiece.instance
   end
 
   def create_chess_board(player1, player2)
@@ -21,7 +22,7 @@ class BoardFactory
     fill_row_with_null_pieces(2..5)
     fill_row_with_pawns(6, player2)
     fill_with_first_row_pieces(7, player2)
-    Board.new(@grid)
+    Board.new(@grid, @null_piece.color)
   end
 
   def fill_with_first_row_pieces(row, player_owner)
@@ -38,10 +39,8 @@ class BoardFactory
   end
 
   def fill_row_with_null_pieces(range)
-    null_piece_color = :grey
-
     (range).each do |index|
-      COLUMN_SIZE.times { @grid[index] << NullPiece.new(null_piece_color) }
+      COLUMN_SIZE.times { @grid[index] << @null_piece }
     end
   end
 

@@ -1,9 +1,12 @@
 require_relative 'piece'
 require_relative '../errors/not_piece_on_location'
+require 'singleton'
 
 class NullPiece < Piece
-  def initialize(color)
-    super(color)
+  include Singleton
+
+  def initialize
+    super(:grey)
   end
 
   def valid_move?(start_position, end_position)

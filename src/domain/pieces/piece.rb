@@ -25,6 +25,11 @@ class Piece
           break
         end
 
+        if board.eat_opponent_piece?(current_position, move)
+          moves << move
+          break
+        end
+
         moves << move
       end
     end

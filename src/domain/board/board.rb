@@ -1,8 +1,9 @@
 class Board
   attr_reader :grid
 
-  def initialize(grid)
+  def initialize(grid, null_piece_color)
     @grid = grid
+    @null_piece_color = null_piece_color
   end
 
   def move_piece(start_position, end_position)
@@ -27,6 +28,13 @@ class Board
     piece_in_current_position = get_piece(current_position)
     piece_on_target_position = get_piece(target_position)
     piece_in_current_position.color == piece_on_target_position.color
+  end
+
+  def eat_opponent_piece?(current_position, target_position)
+    piece_in_current_position = get_piece(current_position)
+    piece_on_target_position = get_piece(target_position)
+    piece_in_current_position.color != piece_on_target_position.color &&
+      piece_on_target_position.color != @null_piece_color
   end
 
 end
