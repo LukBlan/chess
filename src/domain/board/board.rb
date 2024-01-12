@@ -1,4 +1,6 @@
 class Board
+  ROW_SIZE = 8
+  COLUMN_SIZE = 8
   attr_reader :grid
 
   def initialize(grid, null_piece_color)
@@ -35,6 +37,14 @@ class Board
     piece_on_target_position = get_piece(target_position)
     piece_in_current_position.color != piece_on_target_position.color &&
       piece_on_target_position.color != @null_piece_color
+  end
+
+  def get_valid_position(cursor_pos, diff)
+    row, column = *cursor_pos
+    diff_row, diff_column = *diff
+    new_row = (row + diff_row) % ROW_SIZE
+    new_column =  (column + diff_column) % COLUMN_SIZE
+    [new_row, new_column]
   end
 
 end
