@@ -1,13 +1,16 @@
 require_relative 'domain/board/board_factory'
 require_relative 'domain/players/human_player'
+require_relative 'domain/players/player_factory'
+
 require_relative 'ui/console_interface'
 require_relative 'ui/board_display'
 require_relative 'ui/cursor'
 
 # Domain
-player1 = HumanPlayer.new(:white, "Player1")
-player2 = HumanPlayer.new(:red, "Player2")
-board_factory = BoardFactory.new
+player_factory = PlayerFactory.new(8)
+player1 = player_factory.create_player(:white, "Player1")
+player2 = player_factory.create_player(:red, "Player2")
+board_factory = BoardFactory.new(8)
 board = board_factory.create_chess_board(player1, player2)
 
 # Ui

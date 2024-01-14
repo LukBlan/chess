@@ -3,7 +3,8 @@ class Board
   COLUMN_SIZE = 8
   attr_reader :grid
 
-  def initialize(grid, null_piece_color)
+  def initialize(grid, null_piece_color, players)
+    @players = players
     @grid = grid
     @null_piece_color = null_piece_color
   end

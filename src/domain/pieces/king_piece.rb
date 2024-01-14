@@ -1,3 +1,5 @@
+require_relative '../move-modules/stepable'
+
 class KingPiece < Piece
   include Stepable
 
