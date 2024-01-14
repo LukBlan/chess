@@ -9,17 +9,32 @@ class Board
     @null_piece_color = null_piece_color
   end
 
+  def in_check?(color)
+    player = get_player_by_color(color)
+    enemy_player = get_enemy_player(color)
+    player_king = player.king_piece
+    king_position = player_king.position
+    enemy_player.pieces_can_move_to(self, king_position)
+  end
+
+  def get_player_by_color(color)
+    @players.find { |player| player.color == color }
+  end
+
+  def get_enemy_player(color)
+    @players.find { |player| player.color != color }
+  end
+
   def move_piece(start_position, end_position)
     start_row, start_column = *start_position
     end_row, end_column = *end_position
-    #piece.valid_move?(start_position, end_position)
     @grid[start_row][start_column], @grid[end_row][end_column] = @grid[end_row][end_column], @grid[start_row][start_column]
+    piece = get_piece(end_position)
+    piece.position = end_position
   end
 
   def possible_moves(start_position)
     piece = get_piece(start_position)
-    p piece.all_moves(start_position)
-    p piece.valid_moves(self, start_position)
   end
 
   def get_piece(position)

@@ -8,11 +8,12 @@ require_relative '../pieces/knight_piece'
 class PlayerFactory
   def initialize(number_of_pieces)
     @number_of_pieces = number_of_pieces
+    @king_piece = nil
   end
 
   def create_player(color, name)
     pieces = create_pieces(color)
-    HumanPlayer.new(color, name, pieces)
+    HumanPlayer.new(color, name, pieces, @king_piece)
   end
 
   def create_pieces(color)
@@ -28,16 +29,18 @@ class PlayerFactory
 
   def create_first_row_pieces(color)
     first_row = []
+    king_piece = KingPiece.new(color)
 
     first_row << RookPiece.new(color)
     first_row << KnightPiece.new(color)
     first_row << Bishop.new(color)
-    first_row << KingPiece.new(color)
+    first_row << king_piece
     first_row << QueenPiece.new(color)
     first_row << Bishop.new(color)
     first_row << KnightPiece.new(color)
     first_row << RookPiece.new(color)
 
+    @king_piece = king_piece
     first_row
   end
 

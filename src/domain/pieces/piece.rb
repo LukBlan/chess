@@ -1,9 +1,16 @@
 class Piece
   ABSTRACT_ERROR_MESSAGE = "This is a abstract class"
   attr_reader :color
+  attr_accessor :position
 
   def initialize(color)
     @color = color
+    @position = nil
+  end
+
+  def can_move_to?(board, position)
+    all_valid_moves = valid_moves(board, @position)
+    all_valid_moves.include?(position)
   end
 
   def valid_move?(start_position, end_position)

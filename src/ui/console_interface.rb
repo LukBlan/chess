@@ -6,10 +6,13 @@ class ConsoleInterface
   end
 
   def start
-    current_position = get_move_position
-    target_position = get_move_position
-    @board.move_piece(current_position, target_position)
-    @board_display.show_board(@board, @cursor)
+    @board.move_piece([7,3], [5,3])
+    @board.move_piece([0,2], [4, 2])
+    puts(@board.in_check?(:white))
+    #current_position = get_move_position
+    #target_position = get_move_position
+    #@board.move_piece(current_position, target_position)
+    #@board_display.show_board(@board, @cursor)
   end
 
   private
