@@ -14,4 +14,9 @@ class KingPiece < Piece
   def symbol
     :K
   end
+
+  def change_position(player, end_position)
+    super
+    player.change_king_position(end_position)
+  end
 end

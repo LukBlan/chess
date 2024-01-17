@@ -17,6 +17,11 @@ class Board
     enemy_player.pieces_can_move_to(self, king_position)
   end
 
+  def checkmate?(color)
+    player = get_player_by_color(color)
+    in_check?(color) && player.not_available_moves(self)
+  end
+
   def get_player_by_color(color)
     @players.find { |player| player.color == color }
   end
@@ -30,7 +35,8 @@ class Board
     end_row, end_column = *end_position
     @grid[start_row][start_column], @grid[end_row][end_column] = @grid[end_row][end_column], @grid[start_row][start_column]
     piece = get_piece(end_position)
-    piece.position = end_position
+    player = get_player_by_color(piece.color)
+    piece.change_position(player, end_position)
   end
 
   def possible_moves(start_position)
@@ -61,6 +67,11 @@ class Board
     new_row = (row + diff_row) % ROW_SIZE
     new_column =  (column + diff_column) % COLUMN_SIZE
     [new_row, new_column]
+  end
+
+  def dup
+    dup_grid = @grid.map { |row| row.map(&:dup)}
+    Board.new(dup_grid, @null_piece_color, @players.map(&:dup))
   end
 
 end

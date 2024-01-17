@@ -9,7 +9,7 @@ class Piece
   end
 
   def can_move_to?(board, position)
-    all_valid_moves = valid_moves(board, @position)
+    all_valid_moves = moves(board, @position)
     all_valid_moves.include?(position)
   end
 
@@ -17,13 +17,9 @@ class Piece
     raise StandardError(ABSTRACT_ERROR_MESSAGE)
   end
 
-  def all_moves(current_position)
+  def moves(board, current_position)
     offset = move_offset
-    get_all_directional_moves(offset, current_position)
-  end
-
-  def valid_moves(board, current_position)
-    all_piece_moves = all_moves(current_position)
+    all_piece_moves = get_all_directional_moves(offset, current_position)
     moves = []
 
     all_piece_moves.each do |direction|
@@ -42,5 +38,23 @@ class Piece
     end
 
     moves
+  end
+
+  def move_into_check?(board, end_position)
+    dup_board = board.dup
+    dup_board.move_piece(@position, end_position)
+    dup_board.in_check?(@color)
+  end
+
+  def valid_moves(board)
+    piece_moves = self.moves(board, @position)
+
+    piece_moves.filter do |move|
+      !move_into_check?(board, move)
+    end
+  end
+
+  def change_position(player, end_position)
+    @position = end_position
   end
 end

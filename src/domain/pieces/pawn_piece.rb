@@ -16,6 +16,6 @@ class PawnPiece < Piece
   end
 
   def move_offset
-    [[1,0]]
+    (@color == :white) ? [[-1,0]] : [[1,0]]
   end
 end

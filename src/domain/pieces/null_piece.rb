@@ -16,4 +16,8 @@ class NullPiece < Piece
   def symbol
     :_
   end
+
+  def dup
+    self
+  end
 end
